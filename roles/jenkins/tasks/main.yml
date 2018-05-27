@@ -19,8 +19,13 @@
     state: present
     filename: 'jenkins.list'
 
-- name: Install Oracle Java 8
+- name: Install jenkins  
   become: yes
   apt: name={{item}} state=latest
   with_items:
     - jenkins
+
+- name: Start service jenkins, if not running
+  service:
+    name: jenkins
+    state: started
